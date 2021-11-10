@@ -1,4 +1,7 @@
 {{ form_start(form) }}
+<div class="font-sans pb-5">
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Valider') }}</button>
+</div>
+<button class="mb-5 bg-red-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105" href="/">Annuler</button>
+<button class="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105" href="/logIn">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}
