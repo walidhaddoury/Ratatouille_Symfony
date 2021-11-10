@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Activity{% endblock %}
+
+{% block body %}
+    <h1>Activity</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ activity.id }}</td>
+            </tr>
+            <tr>
+                <th>Activity_name</th>
+                <td>{{ activity.activityName }}</td>
+            </tr>
+            <tr>
+                <th>Activity_date</th>
+                <td>{{ activity.activityDate ? activity.activityDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Is_finish</th>
+                <td>{{ activity.isFinish ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>{{ activity.members ? activity.members|join(', ') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('activity_index') }}">back to list</a>
+
+    <a href="{{ path('activity_edit', {'id': activity.id}) }}">edit</a>
+
+    {{ include('activity/_delete_form.html.twig') }}
+{% endblock %}

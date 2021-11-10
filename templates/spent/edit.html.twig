@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Spent{% endblock %}
+
+{% block body %}
+    <h1>Edit Spent</h1>
+
+    {{ include('spent/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('spent_index') }}">back to list</a>
+
+    {{ include('spent/_delete_form.html.twig') }}
+{% endblock %}

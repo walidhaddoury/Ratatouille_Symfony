@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Spent{% endblock %}
+
+{% block body %}
+    <h1>Create new Spent</h1>
+
+    {{ include('spent/_form.html.twig') }}
+
+    <a href="{{ path('spent_index') }}">back to list</a>
+{% endblock %}
