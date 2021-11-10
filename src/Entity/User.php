@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,22 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $password;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Activity::class, mappedBy="users")
+     */
+    private $activities;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Spent::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $spents;
+
+    public function __construct()
+    {
+        $this->activities = new ArrayCollection();
+        $this->spents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +121,63 @@ class User
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Activity[]
+     */
+    public function getActivities(): Collection
+    {
+        return $this->activities;
+    }
+
+    public function addActivity(Activity $activity): self
+    {
+        if (!$this->activities->contains($activity)) {
+            $this->activities[] = $activity;
+            $activity->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivity(Activity $activity): self
+    {
+        if ($this->activities->removeElement($activity)) {
+            $activity->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Spent[]
+     */
+    public function getSpents(): Collection
+    {
+        return $this->spents;
+    }
+
+    public function addSpent(Spent $spent): self
+    {
+        if (!$this->spents->contains($spent)) {
+            $this->spents[] = $spent;
+            $spent->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpent(Spent $spent): self
+    {
+        if ($this->spents->removeElement($spent)) {
+            // set the owning side to null (unless already changed)
+            if ($spent->getUser() === $this) {
+                $spent->setUser(null);
+            }
+        }
 
         return $this;
     }
