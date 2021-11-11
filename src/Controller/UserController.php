@@ -86,7 +86,7 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();
@@ -95,9 +95,12 @@ class UserController extends AbstractController
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    /**
+     * @Route("/connexion", name="user_connexion", methods={"GET", "POST"})
+     */
     public function connexion(Request $request, SessionInterface $session): Response
     {
-        if($session->has("login")) {
+        if ($session->has("login")) {
             return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
         }
         $user = new User();
@@ -107,7 +110,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $find_user = $entityManager->getRepository(User::class)->findOneBy(array('mail' => $user->getMail()));
-            if(!isset($find_user)) {
+            if (!isset($find_user)) {
                 $error = new FormError("Utilisateur non trouvé.");
                 $form->addError($error);
                 return $this->renderForm('logIn.html.twig', [
@@ -116,7 +119,7 @@ class UserController extends AbstractController
                 ]);
             }
             $session->set("login", $find_user->getId());
-            return $this->redirectToRoute('', [], Response::HTTP_SEE_OTHER);
+            return $this->renderForm('base.html.twig');
         }
 
         return $this->renderForm('logIn.html.twig', [
@@ -125,9 +128,13 @@ class UserController extends AbstractController
         ]);
     }
 
-    public function deco(SessionInterface $session):Response
+
+    /**
+     * @Route("/deco", name="deco", methods={"GET"})
+     */
+    public function deco(SessionInterface $session): Response
     {
         $session->remove("login");
-        return $this->redirectToRoute('', [], Response::HTTP_SEE_OTHER);
+        return $this->renderForm('base.html.twig');
     }
 }
