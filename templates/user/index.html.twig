@@ -1,45 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Activity index{% endblock %}
 
 {% block body %}
-    <h1>Affichage de tous les utilisateurs</h1>
+    <div class="w-full h-screen justify-center align-center p-12">
+        <h1 class="text-3xl font-bold font-heading text-center mb-10 text-red-400">TOUS LES USER</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Mail</th>
-                <th>Photo</th>
-                <th>Mot de passe</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.mail }}</td>
-                <td>
-                    <img src="{{ user.picture }}">
-                </td>
-                <td>{{ user.password }}</td>
-                <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('user_new') }}">Create new</a>
+        <div class="w-full justify-evenly">
+            <table class="table w-full text-gray-400 border-separate space-y-6 text-sm">
+                <thead class="bg-red-400 text-white">
+                    <tr>
+                        <th class="p-3 text-left">Id</th>
+                        <th class="p-3 text-left">Prénom</th>
+                        <th class="p-3 text-left">Nom</th>
+                        <th class="p-3 text-left">Mail</th>
+                        <th class="p-3 text-left">Photo</th>
+                        <th class="p-3 text-left">Mot de passe</th>
+                        <th class="p-3 text-left">actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr class="bg-blue-200 lg:text-black">
+                        <td class="p-3">{{ user.id }}</td>
+                        <td class="p-3">{{ user.firstName }}</td>
+                        <td class="p-3">{{ user.lastName }}</td>
+                        <td class="p-3">{{ user.mail }}</td>
+                        <td class="p-3">
+                            <img src="{{ user.picture }}">
+                        </td>
+                        <td class="p-3">{{ user.password }}</td>
+                        <td class="p-3">
+                            <a href="{{ path('user_show', {'id': user.id}) }}"
+                               class="text-gray-500 hover:text-gray-100 mr-2">
+                                <i class="material-icons-outlined text-base">Voir</i>
+                            </a>
+                            <a href="{{ path('user_edit', {'id': user.id}) }}"
+                               class="text-yellow-400 hover:text-gray-100 mx-2">
+                                <i class="material-icons-outlined text-base">Modifier</i>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="w-full">
+            <a class="bg-green-500 w-1/4 py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+               href="{{ path('user_new') }}">Create new
+            </a>
+        </div>
+    </div>
 {% endblock %}
+
