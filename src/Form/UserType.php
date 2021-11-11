@@ -21,6 +21,7 @@ class UserType extends AbstractType
                 [
                     'required' => true,
                     'attr' => [
+                        'placeholder' => "Prénom",
                         'class' => "p-3 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0",
                         'maxlength' => 32
                     ]
@@ -31,7 +32,8 @@ class UserType extends AbstractType
                 [
                     'required' => true,
                     'attr' => [
-                        'class' => "p-3 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0",
+                        'placeholder' => "Nom",
+                        'class' => "p-3 mt-1 block w-full border-none bg-gray-100 h-17 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0",
                         'maxlength' => 32
                     ]
                 ])
@@ -40,6 +42,7 @@ class UserType extends AbstractType
                 [
                     'required' => true,
                     'attr' => [
+                        'placeholder' => "E-mail",
                         'class' => "p-3 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0",
                         'maxlength' => 100
                     ]
@@ -54,9 +57,9 @@ class UserType extends AbstractType
                 [
                     'required' => true,
                     'attr' => [
+                        'placeholder' => "Mot de passe",
                         'class' => "p-3 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0",
-                        'maxlength' => 100,
-                        'type' => "password"
+                        'maxlength' => 100
                     ]
                 ])
         ;
