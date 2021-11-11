@@ -10,31 +10,31 @@
                     <label for="" class="block mt-3 text-lg text-gray-700 text-center font-semibold">
                         Connexion
                     </label>
-                    <form method="#" action="#" class="mt-10">
-
-                        <div>
-                            <input type="email" placeholder="E-mail" class="p-3 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
-                        </div>
-
-                        <div class="mt-7">
-                            <input type="password" placeholder="Mot de passe" class="p-3 mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
-                        </div>
-
-                        <div class="mt-7">
-                            <button class="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
-                                Connexion
-                            </button>
-                        </div>
-
-                        <div class="mt-7">
-                            <div class="flex justify-center items-center">
-                                <label class="mr-2" >Pas de compte ?</label>
-                                <a href="/user/new" class="text-blue-500 transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
-                                    Créer un compte
-                                </a>
+                    <div class="w-full h-full">
+                        {{ form_start(form) }}
+                        <div class="font-sans pb-5">
+                            <div class="mb-5">
+                                {{ form_errors(form) }}
                             </div>
+                            <div class="row">
+                                <div class="mb-5">
+                                    {{ form_widget(form.mail) }}
+                                </div>
+                                <div class="mb-5">
+                                    {{ form_widget(form.password) }}
+                                </div>
+                            </div>
+                            {# {{ form_widget(form) }} #}
                         </div>
-                    </form>
+                        <div class="w-full flex flex-row justify-evenly">
+                            <button class="bg-red-500 w-1/3 py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
+                                <a class="block" href="/">Annuler</a>
+                            </button>
+                            <button class="bg-blue-500 w-1/3 py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+                                    href="/logIn">{{ button_label|default('Connexion') }}</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
                 </div>
             </div>
         </div>

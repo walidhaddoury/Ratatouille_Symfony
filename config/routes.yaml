@@ -5,4 +5,8 @@ index:
 
 logIn:
   path: /logIn
-  controller: App\Controller\DefaultController::logIn
+  controller: App\Controller\UserController::connexion
+
+deco:
+  path: /deco
+  controller: App\Controller\UserController::deco

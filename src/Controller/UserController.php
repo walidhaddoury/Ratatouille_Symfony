@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserConnexionType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -90,5 +93,41 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    public function connexion(Request $request, SessionInterface $session): Response
+    {
+        if($session->has("login")) {
+            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+        }
+        $user = new User();
+        $form = $this->createForm(UserConnexionType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $find_user = $entityManager->getRepository(User::class)->findOneBy(array('mail' => $user->getMail()));
+            if(!isset($find_user)) {
+                $error = new FormError("Utilisateur non trouvé.");
+                $form->addError($error);
+                return $this->renderForm('logIn.html.twig', [
+                    'user' => $user,
+                    'form' => $form,
+                ]);
+            }
+            $session->set("login", $find_user->getId());
+            return $this->redirectToRoute('/', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('logIn.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+
+    public function deco(SessionInterface $session):Response
+    {
+        $session->remove("login");
+        return $this->redirectToRoute('/', [], Response::HTTP_SEE_OTHER);
     }
 }
