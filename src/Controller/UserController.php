@@ -116,7 +116,7 @@ class UserController extends AbstractController
                 ]);
             }
             $session->set("login", $find_user->getId());
-            return $this->redirectToRoute('/', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('logIn.html.twig', [
@@ -128,6 +128,6 @@ class UserController extends AbstractController
     public function deco(SessionInterface $session):Response
     {
         $session->remove("login");
-        return $this->redirectToRoute('/', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('', [], Response::HTTP_SEE_OTHER);
     }
 }
