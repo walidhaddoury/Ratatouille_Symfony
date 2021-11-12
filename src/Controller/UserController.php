@@ -21,10 +21,16 @@ class UserController extends AbstractController
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, SessionInterface $session): Response
     {
+        if ($session->has("login")) {
+            $current_user = true;
+        } else {
+            $current_user = false;
+        }
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
+            'current' => $current_user
         ]);
     }
 
@@ -101,7 +107,11 @@ class UserController extends AbstractController
     public function connexion(Request $request, SessionInterface $session): Response
     {
         if ($session->has("login")) {
-            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+                $current_user = true;
+            return $this->redirectToRoute('index', ['current' => $current_user], Response::HTTP_SEE_OTHER);
+        }
+        else {
+            $current_user = false;
         }
         $user = new User();
         $form = $this->createForm(UserConnexionType::class, $user);
@@ -116,23 +126,25 @@ class UserController extends AbstractController
                 return $this->renderForm('logIn.html.twig', [
                     'user' => $user,
                     'form' => $form,
+                    'current' => $current_user
                 ]);
-            }
-            elseif ($find_user->getPassword() !== $user->getPassword()){
+            } elseif ($find_user->getPassword() !== $user->getPassword()) {
                 $error = new FormError("Mail ou mot de passe incorrect !");
                 $form->addError($error);
                 return $this->renderForm('logIn.html.twig', [
                     'user' => $user,
                     'form' => $form,
+                    'current' => $current_user
                 ]);
             }
             $session->set("login", $find_user->getId());
-            return $this->renderForm('base.html.twig');
+            return $this->renderForm('base.html.twig', ['current' => $current_user]);
         }
 
         return $this->renderForm('logIn.html.twig', [
             'user' => $user,
             'form' => $form,
+            'current' => $current_user
         ]);
     }
 
@@ -143,6 +155,12 @@ class UserController extends AbstractController
     public function deco(SessionInterface $session): Response
     {
         $session->remove("login");
-        return $this->renderForm('base.html.twig');
+        if($session->has("login")) {
+            $current_user = true;
+        }
+        else {
+            $current_user = false;
+        }
+        return $this->renderForm('base.html.twig', ['current' => $current_user]);
     }
 }

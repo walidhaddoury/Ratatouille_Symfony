@@ -8,6 +8,7 @@ use App\Repository\SpentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -18,10 +19,17 @@ class SpentController extends AbstractController
     /**
      * @Route("/", name="spent_index", methods={"GET"})
      */
-    public function index(SpentRepository $spentRepository): Response
+    public function index(SpentRepository $spentRepository, SessionInterface $session): Response
     {
+        if($session->has("login")) {
+            $current_user = true;
+        }
+        else {
+            $current_user = false;
+        }
         return $this->render('spent/index.html.twig', [
             'spents' => $spentRepository->findAll(),
+            'current' => $current_user
         ]);
     }
 
