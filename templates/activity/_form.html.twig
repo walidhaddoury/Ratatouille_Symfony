@@ -1,4 +1,30 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="w-full h-full">
+    {{ form_start(form) }}
+    <div class="font-sans pb-5">
+        <div class="mb-5">
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="row">
+            <div class="mb-5">
+                {{ form_widget(form.activity_name) }}
+            </div>
+            <div class="mb-5">
+                {{ form_widget(form.activity_date) }}
+            </div>
+            <div class="mb-5">
+                {{ form_widget(form.is_finish) }}
+            </div>
+            <div class="mb-5">
+                {{ form_widget(form.members) }}
+            </div>
+        </div>
+        {# {{ form_widget(form) }} #}
+    </div>
+    <button class="mb-5 bg-red-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
+        <a class="block" href="/activity">Annuler</a>
+    </button>
+    <button class="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+            href="/activity">{{ button_label|default('Valider') }}</button>
+    {{ form_end(form) }}
+</div>
