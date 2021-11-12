@@ -36,12 +36,18 @@ class SpentController extends AbstractController
     /**
      * @Route("/new", name="spent_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, SessionInterface $session): Response
     {
         $spent = new Spent();
         $form = $this->createForm(SpentType::class, $spent);
         $form->handleRequest($request);
 
+        if($session->has("login")) {
+            $current_user = true;
+        }
+        else {
+            $current_user = false;
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($spent);
@@ -53,27 +59,41 @@ class SpentController extends AbstractController
         return $this->renderForm('spent/new.html.twig', [
             'spent' => $spent,
             'form' => $form,
+            'current' => $current_user
         ]);
     }
 
     /**
      * @Route("/{id}", name="spent_show", methods={"GET"})
      */
-    public function show(Spent $spent): Response
+    public function show(Spent $spent, SessionInterface $session): Response
     {
+        if($session->has("login")) {
+            $current_user = true;
+        }
+        else {
+            $current_user = false;
+        }
         return $this->render('spent/show.html.twig', [
             'spent' => $spent,
+            'current' => $current_user
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="spent_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Spent $spent): Response
+    public function edit(Request $request, Spent $spent, SessionInterface $session): Response
     {
         $form = $this->createForm(SpentType::class, $spent);
         $form->handleRequest($request);
 
+        if($session->has("login")) {
+            $current_user = true;
+        }
+        else {
+            $current_user = false;
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -83,20 +103,27 @@ class SpentController extends AbstractController
         return $this->renderForm('spent/edit.html.twig', [
             'spent' => $spent,
             'form' => $form,
+            'current' => $current_user
         ]);
     }
 
     /**
      * @Route("/{id}", name="spent_delete", methods={"POST"})
      */
-    public function delete(Request $request, Spent $spent): Response
+    public function delete(Request $request, Spent $spent, SessionInterface $session): Response
     {
+        if($session->has("login")) {
+            $current_user = true;
+        }
+        else {
+            $current_user = false;
+        }
         if ($this->isCsrfTokenValid('delete'.$spent->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($spent);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('spent_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('spent_index', ['current' => $current_user], Response::HTTP_SEE_OTHER);
     }
 }
