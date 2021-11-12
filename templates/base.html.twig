@@ -20,20 +20,21 @@
                 </a>
                 <!-- Nav Links -->
                 <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
-                    <li><a class="hover:text-gray-300" href="/">Acceuil</a></li>
-                    <li><a class="hover:text-gray-300" href="/activity">Activité</a></li>
-                    <li><a class="hover:text-gray-300" href="/spent">Dépenses</a></li>
-                    <li><a class="hover:text-gray-300" href="https://www.tricount.com/fr/a-propos-de-tricount">A propos</a></li>
-                    <li><a class="hover:text-gray-300" href="https://www.tricount.com/fr/questions-frequentes">FAQ</a></li>
+                    <li><a class="hover:text-gray-300" href="/">Accueil</a></li>
+                    {% if current %}
+                        <li><a class="hover:text-gray-300" href="/activity">Activité</a></li>
+                        <li><a class="hover:text-gray-300" href="/spent">Dépenses</a></li>
+                    {% endif %}
+                    <li><a class="hover:text-gray-300" href="https://www.tricount.com/fr/a-propos-de-tricount">A
+                            propos</a></li>
+                    <li><a class="hover:text-gray-300" href="https://www.tricount.com/fr/questions-frequentes">FAQ</a>
+                    </li>
                 </ul>
                 <!-- Header Icons -->
+
                 <div class="hidden xl:flex items-center space-x-5 items-center">
-                    <a class="flex items-center hover:text-gray-300" href="/deco">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none"
-                             viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
+                    <a class="flex items-center text-red-500" href="/deco">
+                        Log out
                     </a>
                     <!-- Sign In / Register      -->
                     <a class="flex items-center hover:text-gray-300" href="/logIn">
@@ -61,22 +62,56 @@
     {% block body %}
         </br></br></br>
         <p>
-            Lorem ipsum dolor sit amet. Non dolores autem aut dolorem corporis ut dolores fugit aut dolor aliquid eos tempora voluptate id voluptas omnis quo sunt optio. Non dolor impedit est reprehenderit voluptates ut velit perferendis est quibusdam repellendus in fugiat nostrum. Ut maiores porro ut cupiditate repellendus a iure voluptatum. Est voluptatum dolorem ab consequatur incidunt nam dicta optio ut unde Quis aut excepturi doloribus et veniam expedita. Et dolorem fugiat vel deserunt quia id totam ipsam ut nesciunt sint. Rem culpa explicabo aut eligendi deleniti quo magni voluptas 33 voluptatem perferendis in nobis odit non voluptatem aperiam. At veniam ipsa eum provident molestias et quibusdam tenetur. Est ipsum beatae hic incidunt incidunt ab laudantium facilis. Aut animi eius ut corrupti esse a consequatur obcaecati.
+            Lorem ipsum dolor sit amet. Non dolores autem aut dolorem corporis ut dolores fugit aut dolor aliquid eos
+            tempora voluptate id voluptas omnis quo sunt optio. Non dolor impedit est reprehenderit voluptates ut velit
+            perferendis est quibusdam repellendus in fugiat nostrum. Ut maiores porro ut cupiditate repellendus a iure
+            voluptatum. Est voluptatum dolorem ab consequatur incidunt nam dicta optio ut unde Quis aut excepturi
+            doloribus et veniam expedita. Et dolorem fugiat vel deserunt quia id totam ipsam ut nesciunt sint. Rem culpa
+            explicabo aut eligendi deleniti quo magni voluptas 33 voluptatem perferendis in nobis odit non voluptatem
+            aperiam. At veniam ipsa eum provident molestias et quibusdam tenetur. Est ipsum beatae hic incidunt incidunt
+            ab laudantium facilis. Aut animi eius ut corrupti esse a consequatur obcaecati.
         </p></br>
         <p>
-            Aut eveniet sunt non nesciunt consequatur aut omnis dignissimos in molestiae consequatur qui soluta quod. Ut recusandae architecto ut dolore molestiae qui quos voluptatem vel magnam unde aut totam eligendi aut dolorem molestias? Non officiis sunt ad sunt consectetur quo cumque eveniet sit dolorum eligendi vel alias architecto 33 quia cumque. Ut veritatis aspernatur aut placeat consectetur sed facilis consequatur quo corporis iure sed minima ipsum aut sunt perspiciatis. Sed quia possimus ad voluptas voluptas sit quasi quisquam hic voluptatem nobis. Nam quidem aliquam aut inventore illo id cupiditate aperiam eos nemo voluptatem. Est minima quidem ut deleniti corporis in nisi suscipit eum possimus molestiae.
+            Aut eveniet sunt non nesciunt consequatur aut omnis dignissimos in molestiae consequatur qui soluta quod. Ut
+            recusandae architecto ut dolore molestiae qui quos voluptatem vel magnam unde aut totam eligendi aut dolorem
+            molestias? Non officiis sunt ad sunt consectetur quo cumque eveniet sit dolorum eligendi vel alias
+            architecto 33 quia cumque. Ut veritatis aspernatur aut placeat consectetur sed facilis consequatur quo
+            corporis iure sed minima ipsum aut sunt perspiciatis. Sed quia possimus ad voluptas voluptas sit quasi
+            quisquam hic voluptatem nobis. Nam quidem aliquam aut inventore illo id cupiditate aperiam eos nemo
+            voluptatem. Est minima quidem ut deleniti corporis in nisi suscipit eum possimus molestiae.
         </p>
         <p>
-            Ut galisum possimus est odio sequi et corporis sunt hic quia omnis. Ab dolores officiis qui dolorem dolorem qui dolores voluptatem est quidem quia et reprehenderit nostrum. Et eaque tempora non dicta enim ut repellendus quis. Id deleniti animi non voluptatum itaque aut recusandae voluptatum et distinctio vitae eos recusandae fugiat. Est fugiat corporis et omnis ducimus sed eligendi quaerat est minima soluta et impedit adipisci.
+            Ut galisum possimus est odio sequi et corporis sunt hic quia omnis. Ab dolores officiis qui dolorem dolorem
+            qui dolores voluptatem est quidem quia et reprehenderit nostrum. Et eaque tempora non dicta enim ut
+            repellendus quis. Id deleniti animi non voluptatum itaque aut recusandae voluptatum et distinctio vitae eos
+            recusandae fugiat. Est fugiat corporis et omnis ducimus sed eligendi quaerat est minima soluta et impedit
+            adipisci.
         </p>
         <p>
-            Lorem ipsum dolor sit amet. Non dolores autem aut dolorem corporis ut dolores fugit aut dolor aliquid eos tempora voluptate id voluptas omnis quo sunt optio. Non dolor impedit est reprehenderit voluptates ut velit perferendis est quibusdam repellendus in fugiat nostrum. Ut maiores porro ut cupiditate repellendus a iure voluptatum. Est voluptatum dolorem ab consequatur incidunt nam dicta optio ut unde Quis aut excepturi doloribus et veniam expedita. Et dolorem fugiat vel deserunt quia id totam ipsam ut nesciunt sint. Rem culpa explicabo aut eligendi deleniti quo magni voluptas 33 voluptatem perferendis in nobis odit non voluptatem aperiam. At veniam ipsa eum provident molestias et quibusdam tenetur. Est ipsum beatae hic incidunt incidunt ab laudantium facilis. Aut animi eius ut corrupti esse a consequatur obcaecati.
+            Lorem ipsum dolor sit amet. Non dolores autem aut dolorem corporis ut dolores fugit aut dolor aliquid eos
+            tempora voluptate id voluptas omnis quo sunt optio. Non dolor impedit est reprehenderit voluptates ut velit
+            perferendis est quibusdam repellendus in fugiat nostrum. Ut maiores porro ut cupiditate repellendus a iure
+            voluptatum. Est voluptatum dolorem ab consequatur incidunt nam dicta optio ut unde Quis aut excepturi
+            doloribus et veniam expedita. Et dolorem fugiat vel deserunt quia id totam ipsam ut nesciunt sint. Rem culpa
+            explicabo aut eligendi deleniti quo magni voluptas 33 voluptatem perferendis in nobis odit non voluptatem
+            aperiam. At veniam ipsa eum provident molestias et quibusdam tenetur. Est ipsum beatae hic incidunt incidunt
+            ab laudantium facilis. Aut animi eius ut corrupti esse a consequatur obcaecati.
         </p></br>
         <p>
-            Aut eveniet sunt non nesciunt consequatur aut omnis dignissimos in molestiae consequatur qui soluta quod. Ut recusandae architecto ut dolore molestiae qui quos voluptatem vel magnam unde aut totam eligendi aut dolorem molestias? Non officiis sunt ad sunt consectetur quo cumque eveniet sit dolorum eligendi vel alias architecto 33 quia cumque. Ut veritatis aspernatur aut placeat consectetur sed facilis consequatur quo corporis iure sed minima ipsum aut sunt perspiciatis. Sed quia possimus ad voluptas voluptas sit quasi quisquam hic voluptatem nobis. Nam quidem aliquam aut inventore illo id cupiditate aperiam eos nemo voluptatem. Est minima quidem ut deleniti corporis in nisi suscipit eum possimus molestiae.
+            Aut eveniet sunt non nesciunt consequatur aut omnis dignissimos in molestiae consequatur qui soluta quod. Ut
+            recusandae architecto ut dolore molestiae qui quos voluptatem vel magnam unde aut totam eligendi aut dolorem
+            molestias? Non officiis sunt ad sunt consectetur quo cumque eveniet sit dolorum eligendi vel alias
+            architecto 33 quia cumque. Ut veritatis aspernatur aut placeat consectetur sed facilis consequatur quo
+            corporis iure sed minima ipsum aut sunt perspiciatis. Sed quia possimus ad voluptas voluptas sit quasi
+            quisquam hic voluptatem nobis. Nam quidem aliquam aut inventore illo id cupiditate aperiam eos nemo
+            voluptatem. Est minima quidem ut deleniti corporis in nisi suscipit eum possimus molestiae.
         </p>
         <p>
-            Ut galisum possimus est odio sequi et corporis sunt hic quia omnis. Ab dolores officiis qui dolorem dolorem qui dolores voluptatem est quidem quia et reprehenderit nostrum. Et eaque tempora non dicta enim ut repellendus quis. Id deleniti animi non voluptatum itaque aut recusandae voluptatum et distinctio vitae eos recusandae fugiat. Est fugiat corporis et omnis ducimus sed eligendi quaerat est minima soluta et impedit adipisci.
+            Ut galisum possimus est odio sequi et corporis sunt hic quia omnis. Ab dolores officiis qui dolorem dolorem
+            qui dolores voluptatem est quidem quia et reprehenderit nostrum. Et eaque tempora non dicta enim ut
+            repellendus quis. Id deleniti animi non voluptatum itaque aut recusandae voluptatum et distinctio vitae eos
+            recusandae fugiat. Est fugiat corporis et omnis ducimus sed eligendi quaerat est minima soluta et impedit
+            adipisci.
         </p>
     {% endblock %}
 </div>
@@ -106,10 +141,12 @@
                             <a class="text-white hover:text-red-300" href="https://www.paypal.com/fr/webapps/mpp/home">Paypal</a>
                         </li>
                         <li>
-                            <a class="text-white hover:text-red-300" href="https://ouvrir-un-compte.boursorama-banque.com/landing/search?origine=2243&xtor=SEC-205&gclid=CjwKCAiAvriMBhAuEiwA8Cs5lSOv0cpc3sFF2Yj-wG7OMt-EBjNSq4qH4H3Xv3mtfzMyl9th4MM-8hoC_CAQAvD_BwE">Boursorama</a>
+                            <a class="text-white hover:text-red-300"
+                               href="https://ouvrir-un-compte.boursorama-banque.com/landing/search?origine=2243&xtor=SEC-205&gclid=CjwKCAiAvriMBhAuEiwA8Cs5lSOv0cpc3sFF2Yj-wG7OMt-EBjNSq4qH4H3Xv3mtfzMyl9th4MM-8hoC_CAQAvD_BwE">Boursorama</a>
                         </li>
                         <li>
-                            <a class="text-white hover:text-red-300" href="https://www.caisse-epargne.fr/">Caisse Epargne</a>
+                            <a class="text-white hover:text-red-300" href="https://www.caisse-epargne.fr/">Caisse
+                                Epargne</a>
                         </li>
                     </nav>
                 </div>
@@ -120,13 +157,17 @@
                             <a class="text-white hover:text-red-300" href="https://www.airbnb.fr/">Airbnb</a>
                         </li>
                         <li>
-                            <a class="text-white hover:text-red-300" href="https://wwws.airfrance.fr/?gclid=CjwKCAiAvriMBhAuEiwA8Cs5lZ9MBkkqYeiIzhOQrZjet6IPtV64OIJJAOEa-i_T0YBZ2zuk-xyTwhoCOn4QAvD_BwE&gclsrc=aw.ds">Air France</a>
+                            <a class="text-white hover:text-red-300"
+                               href="https://wwws.airfrance.fr/?gclid=CjwKCAiAvriMBhAuEiwA8Cs5lZ9MBkkqYeiIzhOQrZjet6IPtV64OIJJAOEa-i_T0YBZ2zuk-xyTwhoCOn4QAvD_BwE&gclsrc=aw.ds">Air
+                                France</a>
                         </li>
                         <li>
-                            <a class="text-white hover:text-red-300" href="https://www.booking.com/index.fr.html?aid=309654;label=hotels-french-fr-tYijcOy0PpFjx71UYR9QaAS228871517013:pl:ta:p1:p22.563.000:ac:ap:neg:fi:tikwd-12196901:lp9056141:li:dec:dm:ppccp=UmFuZG9tSVYkc2RlIyh9YcsZ-Id2vkzIfTmYhvC5HOg;ws=&gclid=CjwKCAiAvriMBhAuEiwA8Cs5lT_Dtwz2cHhBszySjPMkHTa7dBRzDXKrnuc_ZhdgvtZkyhyuedcHmhoCL8EQAvD_BwE">Booking</a>
+                            <a class="text-white hover:text-red-300"
+                               href="https://www.booking.com/index.fr.html?aid=309654;label=hotels-french-fr-tYijcOy0PpFjx71UYR9QaAS228871517013:pl:ta:p1:p22.563.000:ac:ap:neg:fi:tikwd-12196901:lp9056141:li:dec:dm:ppccp=UmFuZG9tSVYkc2RlIyh9YcsZ-Id2vkzIfTmYhvC5HOg;ws=&gclid=CjwKCAiAvriMBhAuEiwA8Cs5lT_Dtwz2cHhBszySjPMkHTa7dBRzDXKrnuc_ZhdgvtZkyhyuedcHmhoCL8EQAvD_BwE">Booking</a>
                         </li>
                         <li>
-                            <a class="text-white hover:text-red-300" href="https://www.trivago.fr/?themeId=280&iPathId=31029&sem_keyword=trivago&sem_creativeid=546039679577&sem_matchtype=e&sem_network=g&sem_device=c&sem_placement=&sem_target=&sem_adposition=&sem_param1=&sem_param2=&sem_campaignid=999168654&sem_adgroupid=124074817821&sem_targetid=kwd-5593367084&sem_location=9056141&cipc=br&cip=3319000005&gclid=CjwKCAiAvriMBhAuEiwA8Cs5lXAPTjwBEX5w3Y-KILrbLAT-uaZphhPUTjdn7tkn7P81Oxb_UzyjuRoCGR0QAvD_BwE">Trivago</a>
+                            <a class="text-white hover:text-red-300"
+                               href="https://www.trivago.fr/?themeId=280&iPathId=31029&sem_keyword=trivago&sem_creativeid=546039679577&sem_matchtype=e&sem_network=g&sem_device=c&sem_placement=&sem_target=&sem_adposition=&sem_param1=&sem_param2=&sem_campaignid=999168654&sem_adgroupid=124074817821&sem_targetid=kwd-5593367084&sem_location=9056141&cipc=br&cip=3319000005&gclid=CjwKCAiAvriMBhAuEiwA8Cs5lXAPTjwBEX5w3Y-KILrbLAT-uaZphhPUTjdn7tkn7P81Oxb_UzyjuRoCGR0QAvD_BwE">Trivago</a>
                         </li>
                     </nav>
                 </div>

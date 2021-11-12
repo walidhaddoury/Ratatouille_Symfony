@@ -118,6 +118,14 @@ class UserController extends AbstractController
                     'form' => $form,
                 ]);
             }
+            elseif ($find_user->getPassword() !== $user->getPassword()){
+                $error = new FormError("Mail ou mot de passe incorrect !");
+                $form->addError($error);
+                return $this->renderForm('logIn.html.twig', [
+                    'user' => $user,
+                    'form' => $form,
+                ]);
+            }
             $session->set("login", $find_user->getId());
             return $this->renderForm('base.html.twig');
         }
