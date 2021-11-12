@@ -3,9 +3,18 @@
 {% block title %}New Spent{% endblock %}
 
 {% block body %}
-    <h1>Create new Spent</h1>
-
-    {{ include('spent/_form.html.twig') }}
-
-    <a href="{{ path('spent_index') }}">back to list</a>
+    <div class="font-sans">
+        <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
+            <div class="relative sm:max-w-sm w-full">
+                <div class="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
+                <div class="card bg-red-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
+                <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+                    <label for="" class="block mt-3 text-lg text-gray-700 text-center font-semibold">
+                        Create new spent
+                    </label>
+                    {{ include('spent/_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
